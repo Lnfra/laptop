@@ -217,8 +217,10 @@ if ! pyenv versions | grep -Fq "$python3_version"; then
   pyenv install -s "$python3_version"
 fi
 
-rbenv global "$python2_version"
-rbenv shell "$python2_version"
+pyenv global "$python2_version"
+pyenv shell "$python2_version"
+
+pip install pylint
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
