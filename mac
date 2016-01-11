@@ -177,8 +177,6 @@ find_latest_ruby() {
   rbenv install -l | grep -v - | tail -1 | sed -e 's/^ *//'
 }
 
-brew cask install 'keycastr'
-
 ruby_version="$(find_latest_ruby)"
 # shellcheck disable=SC2016
 append_to_zshrc 'eval "$(rbenv init - --no-rehash)"' 1
