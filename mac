@@ -138,39 +138,39 @@ brew_install_or_upgrade 'git'
 brew_install_or_upgrade 'openssl'
 brew unlink openssl && brew link openssl --force
 brew_install_or_upgrade 'rcm'
-brew_install_or_upgrade 'reattach-to-user-namespace'
+#brew_install_or_upgrade 'reattach-to-user-namespace'
 brew_install_or_upgrade 'the_silver_searcher'
-brew_install_or_upgrade 'tmux'
+#brew_install_or_upgrade 'tmux'
 brew_install_or_upgrade 'vim'
 brew_install_or_upgrade 'zsh'
 
-fancy_echo "Updating Heroku tools ..."
-brew_install_or_upgrade 'heroku-toolbelt'
-brew_install_or_upgrade 'parity'
+#fancy_echo "Updating Heroku tools ..."
+#brew_install_or_upgrade 'heroku-toolbelt'
+#brew_install_or_upgrade 'parity'
 
 fancy_echo "Updating GitHub tools ..."
 brew_install_or_upgrade 'hub'
 
-fancy_echo "Updating image tools ..."
-brew_install_or_upgrade 'imagemagick'
+#fancy_echo "Updating image tools ..."
+#brew_install_or_upgrade 'imagemagick'
 
-fancy_echo "Updating testing tools ..."
-brew_install_or_upgrade 'qt'
+#fancy_echo "Updating testing tools ..."
+#brew_install_or_upgrade 'qt'
 
-fancy_echo "Updating programming languages ..."
-brew_install_or_upgrade 'libyaml' # should come after openssl
+#fancy_echo "Updating programming languages ..."
+#brew_install_or_upgrade 'libyaml' # should come after openssl
 brew_install_or_upgrade 'node'
 brew_install_or_upgrade 'rbenv'
 brew_install_or_upgrade 'ruby-build'
-brew_install_or_upgrade 'python3'
-brew_install_or_upgrade 'pyenv'
+#brew_install_or_upgrade 'python3'
+#brew_install_or_upgrade 'pyenv'
 
 
-fancy_echo "Updating databases ..."
-brew_install_or_upgrade 'postgres'
-brew_install_or_upgrade 'redis'
-brew_launchctl_restart 'postgresql'
-brew_launchctl_restart 'redis'
+#fancy_echo "Updating databases ..."
+#brew_install_or_upgrade 'postgres'
+#brew_install_or_upgrade 'redis'
+#brew_launchctl_restart 'postgresql'
+#brew_launchctl_restart 'redis'
 
 fancy_echo "Configuring Ruby ..."
 find_latest_ruby() {
@@ -197,30 +197,30 @@ if ! rbenv versions | grep -Fq "$ruby_version"; then
   rbenv install -s "$ruby_version"
 fi
 
-fancy_echo "Configuring python ..."
-find_latest_python() {
-  local version=$1
-
-  pyenv install -l | egrep "^\s+(${version}\.\d+\.\d+)\$" | tail -1 | sed -e 's/^ *//'
-}
-
-python2_version="$(find_latest_python 2)"
-python3_version="$(find_latest_python 3)"
-append_to_zshrc 'eval "$(pyenv init - --no-rehash)"' 1
-eval "$(pyenv init -)"
-
-if ! pyenv versions | grep -Fq "$python2_version"; then
-  pyenv install -s "$python2_version"
-fi
-
-if ! pyenv versions | grep -Fq "$python3_version"; then
-  pyenv install -s "$python3_version"
-fi
-
-pyenv global "$python2_version"
-pyenv shell "$python2_version"
-
-pip install pylint
+# fancy_echo "Configuring python ..."
+# find_latest_python() {
+#   local version=$1
+#
+#   pyenv install -l | egrep "^\s+(${version}\.\d+\.\d+)\$" | tail -1 | sed -e 's/^ *//'
+# }
+#
+# python2_version="$(find_latest_python 2)"
+# python3_version="$(find_latest_python 3)"
+# append_to_zshrc 'eval "$(pyenv init - --no-rehash)"' 1
+# eval "$(pyenv init -)"
+#
+# if ! pyenv versions | grep -Fq "$python2_version"; then
+#   pyenv install -s "$python2_version"
+# fi
+#
+# if ! pyenv versions | grep -Fq "$python3_version"; then
+#   pyenv install -s "$python3_version"
+# fi
+#
+# pyenv global "$python2_version"
+# pyenv shell "$python2_version"
+#
+# pip install pylint
 
 if [ -f "$HOME/.laptop.local" ]; then
   fancy_echo "Running your customizations from ~/.laptop.local ..."
